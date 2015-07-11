@@ -14,5 +14,7 @@ deployment:
   hub:
     branch: master
     commands:
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - docker push bbailey/telegraf:latest
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD:
+          parallel: true
+      - docker push bbailey/telegraf:latest:
+          parallel: true
