@@ -16,4 +16,4 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD:
           parallel: true
-      - ./deploy.sh $CIRCLE_SHA1
+      - docker push bbailey/telegraf:latest
