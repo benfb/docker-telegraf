@@ -1,8 +1,10 @@
 FROM debian:jessie
 MAINTAINER Ben Bailey <bennettbailey@gmail.com>
 
+# Override with e.g. $ docker build --build-arg TELEGRAF_VERSION=1.2.3
+ARG TELEGRAF_VERSION=0.1.4
+
 RUN apt-get update && apt-get install -y curl
-ENV TELEGRAF_VERSION 0.1.4
 RUN curl -s -o /tmp/telegraf_latest_amd64.deb http://get.influxdb.org/telegraf/telegraf_${TELEGRAF_VERSION}_amd64.deb && \
   dpkg -i /tmp/telegraf_latest_amd64.deb && \
   rm /tmp/telegraf_latest_amd64.deb && \
