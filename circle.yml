@@ -1,14 +1,23 @@
 machine:
   services:
     - docker
+
 dependencies:
   cache_directories:
-    - "~/docker-telegraf"
+    - "~/docker"
   override:
     - docker info
-    - if [[ -e ~/docker-telegraf/image.tar ]]; then docker load --input ~/docker-telegraf/image.tar; fi
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t bbailey/telegraf .
-    - mkdir -p ~/docker-telegraf; docker save --output ~/docker-telegraf/image.tar bbailey/telegraf
+    - mkdir -p ~/docker; docker save bbailey/telegraf > ~/docker/image.tar
+
 test:
-  override:  
+  override:
     - docker run -d bbailey/telegraf test -e /opt/telegraf/telegraf
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push bbailey/telegraf

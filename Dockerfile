@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:jessie:8.2
 MAINTAINER Ben Bailey <bennettbailey@gmail.com>
 
 # Override with e.g. $ docker build --build-arg TELEGRAF_VERSION=1.2.3
