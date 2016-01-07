@@ -1,4 +1,4 @@
-FROM debian/jessie:8.2
+FROM debian:jessie
 MAINTAINER Ben Bailey <bennettbailey@gmail.com>
 
 # Should change this to ARG instruction when docker version is updated
